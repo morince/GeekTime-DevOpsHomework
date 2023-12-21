@@ -2,11 +2,6 @@
 
 # helm
 
-setup_hosts() {
-    echo "${public_ip} sonar.${prefix}.${domain}" | sudo tee -a /etc/hosts
-}
-
-
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && sudo chmod +x /usr/bin/yq
 
@@ -21,6 +16,8 @@ helm upgrade --install ingress-nginx ingress-nginx \
 
 # install jenkins
 helm repo add jenkins https://charts.jenkins.io
+hel repo add https://kubernetes.github.io/ingress-nginx
+helm repo add crossplane-stable https://charts.crossplane.io/stable
 helm repo update
 
 # create ns
@@ -52,4 +49,4 @@ helm upgrade -i crossplane \
 
 kubectl apply -f /tmp/tf-provider.yaml -n crossplane-system
 # create bookinfo 
-kubectl apply -f /tmp/applicationset-bookinfo.yaml -n argocd
+kubectl apply -f /tmp/argocd-applicationset-bookinfo.yaml -n argocd
