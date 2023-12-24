@@ -2,7 +2,7 @@
 "clusters":
 - "cluster":
     "certificate-authority-data": ""
-    "server": "https://43.129.217.245:6443"
+    "server": ""
   "name": "cluster.local"
 "contexts":
 - "context":
